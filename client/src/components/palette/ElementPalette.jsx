@@ -2,47 +2,60 @@ import React from 'react';
 import DraggableElementType from './DraggableElementType';
 import ELEMENT_TYPES from '../../constants/elementTypes';
 
-// Element palette component
+// Enhanced element palette component with better organization and styling
 function ElementPalette() {
+  // Icons can be custom or emoji based on preference
+  const elementGroups = [
+    {
+      title: "Content",
+      elements: [
+        { type: ELEMENT_TYPES.HEADING, name: "Heading", icon: "H" },
+        { type: ELEMENT_TYPES.PARAGRAPH, name: "Paragraph", icon: "¶" },
+      ]
+    },
+    {
+      title: "Media",
+      elements: [
+        { type: ELEMENT_TYPES.IMAGE, name: "Image", icon: "🖼️" },
+        { type: ELEMENT_TYPES.BUTTON, name: "Button", icon: "B" },
+      ]
+    },
+    {
+      title: "Layout",
+      elements: [
+        { type: ELEMENT_TYPES.CONTAINER, name: "Container", icon: "□" },
+      ]
+    }
+  ];
+
   return (
-    <div>
-      <h3 className="mt-0 pb-2.5 border-b border-gray-300">Elements</h3>
-      <div>
-        <div>
-          <h4 className="my-4 mt-3.5 text-gray-500">Basic</h4>
-          <div className="flex flex-wrap gap-2">
-            <DraggableElementType 
-              type={ELEMENT_TYPES.HEADING} 
-              name="Heading" 
-              icon="H" 
-            />
-            <DraggableElementType 
-              type={ELEMENT_TYPES.PARAGRAPH} 
-              name="Paragraph" 
-              icon="¶" 
-            />
-            <DraggableElementType 
-              type={ELEMENT_TYPES.IMAGE} 
-              name="Image" 
-              icon="🖼️" 
-            />
-            <DraggableElementType 
-              type={ELEMENT_TYPES.BUTTON} 
-              name="Button" 
-              icon="B" 
-            />
+    <div className="p-3">
+      {elementGroups.map((group, index) => (
+        <div key={index} className="mb-6">
+          <h4 className="text-xs uppercase tracking-wider text-gray-500 font-semibold mb-3 px-1">
+            {group.title}
+          </h4>
+          <div className="grid grid-cols-2 gap-3">
+            {group.elements.map((element, elemIndex) => (
+              <DraggableElementType
+                key={elemIndex}
+                type={element.type}
+                name={element.name}
+                icon={element.icon}
+              />
+            ))}
           </div>
         </div>
-        <div>
-          <h4 className="my-4 mt-3.5 text-gray-500">Layout</h4>
-          <div className="flex flex-wrap gap-2">
-            <DraggableElementType 
-              type={ELEMENT_TYPES.CONTAINER} 
-              name="Container" 
-              icon="□" 
-            />
-          </div>
-        </div>
+      ))}
+      
+      {/* Helpful Instructions */}
+      <div className="mt-8 p-3 bg-blue-50 rounded-lg border border-blue-100">
+        <h5 className="text-sm font-semibold text-blue-700 mb-2">Quick Tips</h5>
+        <ul className="text-xs text-blue-700 list-disc pl-4 space-y-1">
+          <li>Drag elements to add them to your page</li>
+          <li>Click on any element to edit its properties</li>
+          <li>Use the preview mode to see your final design</li>
+        </ul>
       </div>
     </div>
   );
