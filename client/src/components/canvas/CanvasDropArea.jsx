@@ -19,30 +19,11 @@ function CanvasDropArea({ onDrop, children, onClick }) {
   return (
     <div
       ref={drop}
-      className={`canvas-drop-area ${isOver ? 'drop-hover' : ''}`}
-      style={{
-        backgroundColor: isOver ? '#f0f8ff' : '#ffffff',
-        border: '1px solid #cccccc',
-        minHeight: '500px',
-        padding: '20px',
-        position: 'relative',
-        transition: 'background-color 0.2s ease',
-      }}
+      className={`relative border border-gray-300 min-h-[500px] p-5 transition-colors duration-200 ${isOver ? 'bg-blue-50' : 'bg-white'}`}
       onClick={onClick}
     >
       {isOver && (
-        <div 
-          style={{ 
-            position: 'absolute', 
-            top: 0, 
-            left: 0, 
-            right: 0, 
-            bottom: 0, 
-            backgroundColor: 'rgba(0, 123, 255, 0.1)', 
-            pointerEvents: 'none',
-            zIndex: 1
-          }} 
-        />
+        <div className="absolute inset-0 bg-blue-100 bg-opacity-10 pointer-events-none z-10" />
       )}
       {children}
     </div>

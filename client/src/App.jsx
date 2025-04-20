@@ -6,7 +6,11 @@ function App() {
   return (
     <DndProvider backend={HTML5Backend}>
     <WebsiteBuilder />
+    <h1 className="text-8xl font-italic underline">
+      Hello world!
+    </h1>
   </DndProvider>
+  
   )
 }
 

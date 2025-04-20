@@ -14,23 +14,10 @@ function DraggableElementType({ type, name, icon }) {
   return (
     <div
       ref={drag}
-      className={`palette-item ${isDragging ? 'dragging' : ''}`}
-      style={{ 
-        opacity: isDragging ? 0.5 : 1,
-        width: '100px',
-        height: '80px',
-        border: '1px solid #dee2e6',
-        borderRadius: '4px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        cursor: 'move',
-        backgroundColor: 'white',
-        transition: 'all 0.2s ease',
-      }}
+      className={`w-24 h-20 border border-gray-300 rounded flex flex-col items-center justify-center cursor-move bg-white transition-all duration-200 
+        ${isDragging ? 'opacity-50' : 'opacity-100'}`}
     >
-      <div style={{ fontSize: '24px', marginBottom: '5px' }}>{icon}</div>
+      <div className="text-2xl mb-1.5">{icon}</div>
       <div>{name}</div>
     </div>
   );

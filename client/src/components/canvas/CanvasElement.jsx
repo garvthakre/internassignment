@@ -16,10 +16,8 @@ function CanvasElement({ element, isSelected, onSelect }) {
         const HeadingTag = props.size;
         return (
           <HeadingTag 
-            style={{ 
-              color: props.color,
-              textAlign: props.align,
-            }}
+            className={`${props.align === 'left' ? 'text-left' : props.align === 'center' ? 'text-center' : 'text-right'}`}
+            style={{ color: props.color }}
           >
             {props.text}
           </HeadingTag>
@@ -27,10 +25,14 @@ function CanvasElement({ element, isSelected, onSelect }) {
       case ELEMENT_TYPES.PARAGRAPH:
         return (
           <p
-            style={{
+            className={`
+              ${props.align === 'left' ? 'text-left' : 
+                props.align === 'center' ? 'text-center' : 
+                props.align === 'justify' ? 'text-justify' : 'text-right'}
+            `}
+            style={{ 
               color: props.color,
-              fontSize: props.fontSize,
-              textAlign: props.align,
+              fontSize: props.fontSize
             }}
           >
             {props.text}
@@ -47,13 +49,12 @@ function CanvasElement({ element, isSelected, onSelect }) {
       case ELEMENT_TYPES.BUTTON:
         return (
           <button
+            className={`rounded border-none cursor-pointer
+              ${props.size === 'small' ? 'px-3 py-1.5' : 
+                props.size === 'large' ? 'px-6 py-3' : 'px-4 py-2'}`}
             style={{
               backgroundColor: props.backgroundColor,
-              color: props.color,
-              padding: props.size === 'small' ? '6px 12px' : props.size === 'large' ? '12px 24px' : '8px 16px',
-              borderRadius: '4px',
-              border: 'none',
-              cursor: 'pointer',
+              color: props.color
             }}
           >
             {props.text}
@@ -69,7 +70,7 @@ function CanvasElement({ element, isSelected, onSelect }) {
             }}
           >
             {/* Container contents would go here */}
-            <p style={{ margin: 0 }}>Container Element</p>
+            <p className="m-0">Container Element</p>
           </div>
         );
       default:
@@ -79,16 +80,9 @@ function CanvasElement({ element, isSelected, onSelect }) {
 
   return (
     <div
-      className={`canvas-element ${isSelected ? 'selected' : ''}`}
+      className={`relative cursor-pointer p-1.5 m-1.5 transition-all duration-200 
+        ${isSelected ? 'border-2 border-blue-500' : 'border-2 border-transparent'}`}
       onClick={handleClick}
-      style={{
-        position: 'relative',
-        cursor: 'pointer',
-        padding: '5px',
-        border: isSelected ? '2px solid #007bff' : '2px solid transparent',
-        margin: '5px',
-        transition: 'all 0.2s ease',
-      }}
     >
       {renderElement()}
     </div>

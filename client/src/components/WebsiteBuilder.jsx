@@ -5,6 +5,7 @@ import CanvasElement from './canvas/CanvasElement';
 import PropertyEditor from "./property/PropertyEditor";
 import ResponsivePreviewToggle from './canvas/ResponsivePreviewToggle';
 import { builderReducer, initialState } from '../reducers/builderReducer';
+
 // Main website builder component
 function WebsiteBuilder() {
   const [state, dispatch] = useReducer(builderReducer, initialState);
@@ -66,40 +67,18 @@ function WebsiteBuilder() {
     activeDevice === 'tablet' ? '768px' : '100%';
 
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100vh',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif',
-      margin: 0,
-      padding: 0,
-      color: '#333',
-    }}>
+    <div className="flex flex-col h-screen font-sans m-0 p-0 text-gray-700">
       {/* Header */}
-      <div style={{
-        background: '#f8f9fa',
-        borderBottom: '1px solid #dee2e6',
-        padding: '10px 20px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-      }}>
-        <h1 style={{ margin: 0, fontSize: '1.5rem' }}>Websites.co.in Website Builder</h1>
-        <div style={{ display: 'flex', gap: '10px' }}>
+      <div className="bg-gray-100 border-b border-gray-300 px-5 py-2.5 flex justify-between items-center">
+        <h1 className="m-0 text-2xl">Websites.co.in Website Builder</h1>
+        <div className="flex gap-2.5">
           <ResponsivePreviewToggle 
             activeDevice={activeDevice} 
             onDeviceChange={setActiveDevice} 
           />
           {state.selectedElementId && (
             <button 
-              style={{
-                backgroundColor: '#dc3545',
-                color: 'white',
-                border: 'none',
-                borderRadius: '4px',
-                padding: '5px 10px',
-                cursor: 'pointer',
-              }}
+              className="bg-red-600 text-white border-none rounded px-2.5 py-1.5 cursor-pointer"
               onClick={handleDeleteElement}
             >
               Delete Element
@@ -109,30 +88,17 @@ function WebsiteBuilder() {
       </div>
 
       {/* Main Content */}
-      <div style={{
-        display: 'flex',
-        flex: 1,
-        overflow: 'hidden',
-      }}>
+      <div className="flex flex-1 overflow-hidden">
         {/* Element Palette */}
-        <div style={{
-          width: '250px',
-          borderRight: '1px solid #dee2e6',
-          overflowY: 'auto',
-          padding: '10px',
-        }}>
+        <div className="w-64 border-r border-gray-300 overflow-y-auto p-2.5">
           <ElementPalette />
         </div>
 
         {/* Canvas Area */}
-        <div style={{
-          flex: 1,
-          padding: '20px',
-          overflowY: 'auto',
-          transition: 'max-width 0.3s ease',
-          maxWidth: canvasWidth,
-          margin: '0 auto',
-        }}>
+        <div 
+          className="flex-1 p-5 overflow-y-auto mx-auto transition-all duration-300 ease-in-out"
+          style={{ maxWidth: canvasWidth }}
+        >
           <CanvasDropArea onDrop={handleDrop} onClick={handleCanvasClick}>
             {state.canvas.layout.map((elementId) => {
               const element = state.canvas.elements[elementId];
@@ -147,11 +113,7 @@ function WebsiteBuilder() {
               );
             })}
             {state.canvas.layout.length === 0 && (
-              <div style={{
-                textAlign: 'center',
-                color: '#6c757d',
-                padding: '40px 0',
-              }}>
+              <div className="text-center text-gray-500 py-10">
                 Drag elements from the palette to start building your website
               </div>
             )}
@@ -159,12 +121,7 @@ function WebsiteBuilder() {
         </div>
 
         {/* Property Editor */}
-        <div style={{
-          width: '300px',
-          borderLeft: '1px solid #dee2e6',
-          overflowY: 'auto',
-          padding: '10px',
-        }}>
+        <div className="w-80 border-l border-gray-300 overflow-y-auto p-2.5">
           <PropertyEditor
             element={selectedElement}
             onPropertyChange={handlePropertyChange}
@@ -175,4 +132,4 @@ function WebsiteBuilder() {
   );
 }
 
-export default WebsiteBuilder
+export default WebsiteBuilder;

@@ -6,11 +6,11 @@ import ELEMENT_TYPES from '../../constants/elementTypes';
 function ElementPalette() {
   return (
     <div>
-      <h3 style={{ marginTop: 0, paddingBottom: '10px', borderBottom: '1px solid #dee2e6' }}>Elements</h3>
+      <h3 className="mt-0 pb-2.5 border-b border-gray-300">Elements</h3>
       <div>
         <div>
-          <h4 style={{ margin: '15px 0 10px', color: '#6c757d' }}>Basic</h4>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+          <h4 className="my-4 mt-3.5 text-gray-500">Basic</h4>
+          <div className="flex flex-wrap gap-2">
             <DraggableElementType 
               type={ELEMENT_TYPES.HEADING} 
               name="Heading" 
@@ -34,8 +34,8 @@ function ElementPalette() {
           </div>
         </div>
         <div>
-          <h4 style={{ margin: '15px 0 10px', color: '#6c757d' }}>Layout</h4>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+          <h4 className="my-4 mt-3.5 text-gray-500">Layout</h4>
+          <div className="flex flex-wrap gap-2">
             <DraggableElementType 
               type={ELEMENT_TYPES.CONTAINER} 
               name="Container" 
