@@ -6,7 +6,7 @@ import CanvasElement from './canvas/CanvasElement';
 import PropertyEditor from "./property/PropertyEditor";
 import { builderReducer, initialState } from '../reducers/builderReducer';
 
-// Main website builder component with improved design and mobile responsiveness
+ 
 function WebsiteBuilder() {
   const [state, dispatch] = useReducer(builderReducer, initialState);
   const [activeDevice, setActiveDevice] = useState('desktop');
@@ -15,22 +15,22 @@ function WebsiteBuilder() {
   const [isPreviewMode, setPreviewMode] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
 
-  // Detect mobile view based on screen width
+  
   useEffect(() => {
     const handleResize = () => {
       setIsMobileView(window.innerWidth < 768);
       
-      // Auto-collapse panels on mobile
+      
       if (window.innerWidth < 768) {
         setPaletteCollapsed(true);
         setPropertiesCollapsed(true);
       }
     };
 
-    // Initial check
+     
     handleResize();
     
-    // Add resize listener
+    
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -48,7 +48,7 @@ function WebsiteBuilder() {
       payload: { id },
     });
     
-    // Auto-expand properties panel when selecting an element on mobile
+     
     if (isMobileView) {
       setPropertiesCollapsed(false);
       setPaletteCollapsed(true);
@@ -79,7 +79,7 @@ function WebsiteBuilder() {
   };
 
   const handleCanvasClick = () => {
-    // Deselect when clicking on canvas background
+     
     if (state.selectedElementId) {
       dispatch({
         type: 'SELECT_ELEMENT',
@@ -108,14 +108,14 @@ function WebsiteBuilder() {
 
   return (
     <div className="flex flex-col h-screen font-sans m-0 p-0 text-gray-800 bg-gray-50">
-      {/* Header - Modernized with gradient and better spacing */}
+       
       <div className="bg-gradient-to-r from-blue-600 to-indigo-700 px-3 sm:px-5 py-3 flex justify-between items-center shadow-md">
         <h1 className="m-0 text-lg sm:text-2xl font-bold text-white flex items-center truncate">
           <span className="mr-2">🌐</span> 
           <span className="hidden sm:inline">Websites.co.in</span> Builder
         </h1>
         <div className="flex gap-1 sm:gap-3 items-center">
-          {/* Preview Button */}
+         
           <button 
             className={`flex items-center gap-0.5 sm:gap-1.5 rounded-md px-2 sm:px-3 py-1 sm:py-1.5 text-sm sm:text-base font-medium transition-all duration-200
               ${isPreviewMode 
@@ -127,7 +127,7 @@ function WebsiteBuilder() {
             {isPreviewMode ? (isMobileView ? 'Edit' : 'Edit Mode') : 'Preview'}
           </button>
           
-          {/* Device Toggle - Improved with icons */}
+          
           <div className="flex bg-blue-800 bg-opacity-30 rounded-md p-1">
             <button 
               className={`p-1 sm:p-1.5 rounded-md transition-all ${activeDevice === 'desktop' 
@@ -158,7 +158,7 @@ function WebsiteBuilder() {
             </button>
           </div>
           
-          {/* Delete Button - Only show when an element is selected */}
+           
           {state.selectedElementId && (
             <button 
               className="flex items-center gap-0.5 sm:gap-1 bg-red-600 hover:bg-red-500 text-white rounded-md px-2 sm:px-3 py-1 sm:py-1.5 text-sm sm:text-base font-medium transition-all"
@@ -172,7 +172,7 @@ function WebsiteBuilder() {
         </div>
       </div>
 
-      {/* Main Content Area - Flexbox direction changes based on screen size */}
+      
       <div className={`flex ${isMobileView ? 'flex-col' : 'flex-row'} flex-1 overflow-hidden relative`}>
         {/* Element Palette */}
         <div className={`bg-white border-r border-gray-200 overflow-hidden transition-all duration-300 flex flex-col

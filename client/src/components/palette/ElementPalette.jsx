@@ -2,9 +2,9 @@ import React from 'react';
 import DraggableElementType from './DraggableElementType';
 import ELEMENT_TYPES from '../../constants/elementTypes';
 
-// Enhanced element palette component with better organization and styling
+ 
 function ElementPalette({ isMobileView }) {
-  // Icons can be custom or emoji based on preference
+   
   const elementGroups = [
     {
       title: "Content",

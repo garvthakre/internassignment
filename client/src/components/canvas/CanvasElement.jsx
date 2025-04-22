@@ -1,7 +1,7 @@
 import React from 'react';
 import ELEMENT_TYPES from '../../constants/elementTypes';
 
-// Canvas element renderer
+ 
 function CanvasElement({ element, isSelected, onSelect }) {
   const { id, type, props } = element;
 

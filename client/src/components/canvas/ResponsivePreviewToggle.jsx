@@ -1,6 +1,5 @@
 import React from 'react';
-
-// Preview toggle component
+ 
 function ResponsivePreviewToggle({ activeDevice, onDeviceChange }) {
   return (
     <div className="flex gap-1.5">

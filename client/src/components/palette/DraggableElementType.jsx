@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDrag } from 'react-dnd';
 
-// Enhanced drag source for palette items with improved visual feedback
+ 
 function DraggableElementType({ type, name, icon, isMobileView }) {
   const [{ isDragging }, drag] = useDrag({
     type: 'PALETTE_ITEM',

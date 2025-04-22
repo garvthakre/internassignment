@@ -1,6 +1,6 @@
 import ELEMENT_TYPES from '../constants/elementTypes';
 
-// Helper function to get default props based on element type
+ 
 export function getDefaultProps(type) {
   switch (type) {
     case ELEMENT_TYPES.HEADING:

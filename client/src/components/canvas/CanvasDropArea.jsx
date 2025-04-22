@@ -1,14 +1,13 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
-
-// Enhanced drop area for the canvas with improved visual feedback
+ 
 function CanvasDropArea({ onDrop, children, onClick, isPreviewMode }) {
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: 'PALETTE_ITEM',
     drop: (item, monitor) => {
       const offset = monitor.getClientOffset();
       // You would calculate the actual position based on the canvas
-      // This is simplified for the prototype
+ 
       onDrop(item.type, { x: offset.x, y: offset.y });
     },
     collect: (monitor) => ({

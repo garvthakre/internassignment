@@ -1,6 +1,6 @@
 import { getDefaultProps } from '../utils/elementUtils';
 
-// Initial state for the builder
+ 
 export const initialState = {
   canvas: {
     elements: {},
